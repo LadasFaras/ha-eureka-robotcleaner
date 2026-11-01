@@ -1,6 +1,6 @@
 {
   "domain": "eureka_robot",
-  "name": "Eureka Robot (unofficial)",
+  "name": "Eureka Robot Cleaner",
   "codeowners": ["@LadasFaras"],
   "config_flow": true,
   "documentation": "https://github.com/LadasFaras/ha-eureka-robotcleaner",

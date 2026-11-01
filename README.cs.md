@@ -1,4 +1,4 @@
-# Eureka Robot pro Home Assistant (neoficiální)
+# Eureka Robot Cleaner pro Home Assistant (neoficiální)
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz)
 [![Validate](https://github.com/LadasFaras/ha-eureka-robotcleaner/actions/workflows/validate.yml/badge.svg)](https://github.com/LadasFaras/ha-eureka-robotcleaner/actions/workflows/validate.yml)
 [![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=LadasFaras&repository=ha-eureka-robotcleaner&category=integration)
@@ -26,7 +26,7 @@ komunikuje přímo s cloudem výrobce.
 
 **Ručně:** zkopírujte `custom_components/eureka_robot/` do `config/custom_components/`.
 
-Potom *Nastavení → Zařízení a služby → Přidat integraci → Eureka Robot* a
+Potom *Nastavení → Zařízení a služby → Přidat integraci → Eureka Robot Cleaner* a
 přihlaste se e-mailem a heslem z aplikace Eureka.
 
 ## Známá omezení
