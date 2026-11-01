@@ -1,0 +1,148 @@
+{
+  "entity": {
+    "vacuum": {
+      "powerbot": {
+        "default": "mdi:robot-vacuum"
+      }
+    },
+    "sensor": {
+      "status": {
+        "default": "mdi:robot-vacuum"
+      },
+      "fan_speed": {
+        "default": "mdi:fan"
+      },
+      "connection": {
+        "default": "mdi:wifi",
+        "state": {
+          "offline": "mdi:wifi-off"
+        }
+      },
+      "filter_life": {
+        "default": "mdi:air-filter"
+      },
+      "side_brush_life": {
+        "default": "mdi:brush"
+      },
+      "main_brush_life": {
+        "default": "mdi:broom"
+      },
+      "cleaning_mode": {
+        "default": "mdi:map-marker-path"
+      },
+      "cleaned_area": {
+        "default": "mdi:texture-box"
+      },
+      "cleaning_time": {
+        "default": "mdi:timer-outline"
+      },
+      "error_code": {
+        "default": "mdi:alert-circle-outline"
+      },
+      "robot_error": {
+        "default": "mdi:alert-circle-outline",
+        "state": {
+          "none": "mdi:check-circle-outline"
+        }
+      },
+      "total_cleaning_time": {
+        "default": "mdi:timer-outline"
+      },
+      "total_cleaned_area": {
+        "default": "mdi:texture-box"
+      },
+      "total_cleanings": {
+        "default": "mdi:counter"
+      },
+      "last_clean": {
+        "default": "mdi:calendar-check"
+      },
+      "sensor_cleaning": {
+        "default": "mdi:eye-refresh-outline"
+      },
+      "wifi_ssid": {
+        "default": "mdi:wifi"
+      },
+      "ip_address": {
+        "default": "mdi:ip-network"
+      }
+    },
+    "binary_sensor": {
+      "cleaning": {
+        "default": "mdi:robot-vacuum"
+      },
+      "docked": {
+        "default": "mdi:home-battery"
+      },
+      "auto_update": {
+        "default": "mdi:update"
+      }
+    },
+    "select": {
+      "water_level": {
+        "default": "mdi:water",
+        "state": {
+          "off": "mdi:water-off"
+        }
+      },
+      "voice": {
+        "default": "mdi:account-voice"
+      },
+      "suction": {
+        "default": "mdi:fan"
+      }
+    },
+    "switch": {
+      "carpet_mode": {
+        "default": "mdi:rug"
+      },
+      "do_not_disturb": {
+        "default": "mdi:bell-sleep",
+        "state": {
+          "off": "mdi:bell"
+        }
+      },
+      "schedule": {
+        "default": "mdi:calendar-clock",
+        "state": {
+          "off": "mdi:calendar-remove"
+        }
+      },
+      "child_lock": {
+        "default": "mdi:lock-open-variant",
+        "state": {
+          "on": "mdi:lock"
+        }
+      }
+    },
+    "number": {
+      "volume": {
+        "default": "mdi:volume-high",
+        "range": {
+          "0": "mdi:volume-off",
+          "1": "mdi:volume-low",
+          "50": "mdi:volume-medium",
+          "80": "mdi:volume-high"
+        }
+      }
+    },
+    "time": {
+      "dnd_start": {
+        "default": "mdi:clock-start"
+      },
+      "dnd_end": {
+        "default": "mdi:clock-end"
+      }
+    },
+    "image": {
+      "map": {
+        "default": "mdi:floor-plan"
+      }
+    },
+    "text": {
+      "room_name": {
+        "default": "mdi:door"
+      }
+    }
+  }
+}

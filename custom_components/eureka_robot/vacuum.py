@@ -1,0 +1,187 @@
+"""Vacuum platform for Eureka Robot (Eureka VR7700)."""
+from __future__ import annotations
+
+import asyncio
+from typing import Any
+
+from homeassistant.components.vacuum import (
+    StateVacuumEntity,
+    VacuumActivity,
+    VacuumEntityFeature,
+)
+from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import ServiceValidationError
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
+
+from . import protocol
+from .const import (
+    FAN_SPEEDS,
+    STATE_CLEANING,
+    STATE_DOCKED,
+    STATE_ERROR,
+    STATE_IDLE,
+    STATE_PAUSED,
+    STATE_RETURNING,
+    robot_state,
+)
+from .coordinator import PowerBotConfigEntry, PowerBotDataUpdateCoordinator
+from .entity import PowerBotEntity
+
+PARALLEL_UPDATES = 1
+
+# vacuum.send_command "move": direction -> manual control byte
+_DIRECTIONS = {"forward": 1, "back": 2, "left": 3, "right": 4}
+_MANUAL_STOP = 0
+_MOVE_SECONDS = 1.0
+_MOVE_MAX_SECONDS = 5.0
+# vacuum.send_command start modes besides the normal whole-house clean
+_CLEAN_MODES = {"clean_edge": 3, "clean_spot": 4}
+
+_ACTIVITY: dict[str, VacuumActivity] = {
+    STATE_CLEANING: VacuumActivity.CLEANING,
+    STATE_PAUSED: VacuumActivity.PAUSED,
+    STATE_RETURNING: VacuumActivity.RETURNING,
+    STATE_DOCKED: VacuumActivity.DOCKED,
+    STATE_IDLE: VacuumActivity.IDLE,
+    STATE_ERROR: VacuumActivity.ERROR,
+}
+
+
+async def async_setup_entry(
+    hass: HomeAssistant,
+    entry: PowerBotConfigEntry,
+    async_add_entities: AddConfigEntryEntitiesCallback,
+) -> None:
+    """Set up the vacuum entity."""
+    async_add_entities([PowerBotVacuum(entry.runtime_data)])
+
+
+class PowerBotVacuum(PowerBotEntity, StateVacuumEntity):
+    """The Eureka VR7700 robot vacuum."""
+
+    _attr_name = None
+    _attr_translation_key = "powerbot"
+    _attr_fan_speed_list = FAN_SPEEDS
+    _attr_supported_features = (
+        VacuumEntityFeature.START
+        | VacuumEntityFeature.STOP
+        | VacuumEntityFeature.PAUSE
+        | VacuumEntityFeature.RETURN_HOME
+        | VacuumEntityFeature.STATE
+        | VacuumEntityFeature.FAN_SPEED
+        | VacuumEntityFeature.LOCATE
+        | VacuumEntityFeature.SEND_COMMAND
+    )
+
+    def __init__(self, coordinator: PowerBotDataUpdateCoordinator) -> None:
+        super().__init__(coordinator, None)
+        if not coordinator.supported:
+            # Unknown command set: show the state only
+            self._attr_supported_features = VacuumEntityFeature.STATE
+
+    @property
+    def activity(self) -> VacuumActivity | None:
+        state = robot_state(self.coordinator.data.get("state"))
+        return _ACTIVITY[state] if state else None
+
+    @property
+    def fan_speed(self) -> str | None:
+        return self.coordinator.fan_speed
+
+    async def async_start(self) -> None:
+        if self.activity == VacuumActivity.PAUSED:
+            await self.coordinator.async_send(protocol.resume())
+        else:
+            await self.coordinator.async_send(
+                protocol.start(*self.coordinator.levels(), mode=self.coordinator.desired_work_mode)
+            )
+
+    async def async_pause(self) -> None:
+        await self.coordinator.async_send(protocol.pause())
+
+    async def async_stop(self, **kwargs: Any) -> None:
+        await self.coordinator.async_send(protocol.stop())
+
+    async def async_return_to_base(self, **kwargs: Any) -> None:
+        await self.coordinator.async_send(protocol.dock())
+
+    async def async_locate(self, **kwargs: Any) -> None:
+        await self.coordinator.async_send(protocol.locate())
+
+    async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None:
+        if fan_speed not in FAN_SPEEDS:
+            raise ServiceValidationError(f"Unknown fan speed: {fan_speed}")
+        await self.coordinator.async_send(
+            protocol.set_suction(*self.coordinator.levels(fan=fan_speed))
+        )
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any] | None:
+        """Room ids and names, for vacuum.send_command clean_rooms."""
+        return {"rooms": self.coordinator.rooms} if self.coordinator.rooms else None
+
+    async def _async_clean_rooms(self, params: dict[str, Any]) -> None:
+        rooms = self.coordinator.rooms
+        wanted = params.get("rooms")
+        if isinstance(wanted, (str, int)):
+            wanted = [wanted]
+        if not wanted or not isinstance(wanted, list):
+            raise ServiceValidationError("Give the rooms to clean, e.g. rooms: [Kitchen, 2]")
+        by_name = {name.casefold(): room_id for room_id, name in rooms.items()}
+        ids: list[int] = []
+        for room in wanted:
+            room_id = by_name.get(str(room).casefold())
+            if room_id is None and str(room).isdigit() and int(room) in rooms:
+                room_id = int(room)
+            if room_id is None:
+                known = ", ".join(f"{i} {n}" for i, n in rooms.items()) or "none read yet"
+                raise ServiceValidationError(f"Unknown room: {room}. Rooms: {known}")
+            if room_id not in ids:
+                ids.append(room_id)
+        if len(ids) > protocol.MAX_ROOMS:
+            raise ServiceValidationError(f"At most {protocol.MAX_ROOMS} rooms at once")
+        try:
+            times = min(max(int(params.get("times", 1)), 1), 3)
+        except (TypeError, ValueError) as err:
+            raise ServiceValidationError("times must be 1, 2 or 3") from err
+        await self.coordinator.async_send(
+            protocol.clean_rooms(*self.coordinator.levels(), [(i, times) for i in ids])
+        )
+
+    async def async_send_command(
+        self,
+        command: str,
+        params: dict[str, Any] | list[Any] | None = None,
+        **kwargs: Any,
+    ) -> None:
+        """Extra commands: move (a short nudge by hand), clean_edge, clean_spot, clean_rooms."""
+        params = params if isinstance(params, dict) else {}
+        if command == "clean_rooms":
+            await self._async_clean_rooms(params)
+            return
+        if command in _CLEAN_MODES:
+            self.coordinator.desired_work_mode = _CLEAN_MODES[command]
+            await self.coordinator.async_send(
+                protocol.start(*self.coordinator.levels(), mode=_CLEAN_MODES[command])
+            )
+            return
+        if command != "move":
+            raise ServiceValidationError(
+                f"Unknown command: {command}. Use move, clean_edge, clean_spot or clean_rooms."
+            )
+        direction = params.get("direction", "forward")
+        if direction not in _DIRECTIONS:
+            raise ServiceValidationError(
+                f"Unknown direction: {direction}. Use {', '.join(_DIRECTIONS)}."
+            )
+        try:
+            seconds = float(params.get("duration", _MOVE_SECONDS))
+        except (TypeError, ValueError) as err:
+            raise ServiceValidationError("duration must be a number of seconds") from err
+        seconds = min(max(seconds, 0.0), _MOVE_MAX_SECONDS)
+        await self.coordinator.async_send(protocol.manual(_DIRECTIONS[direction]))
+        try:
+            await asyncio.sleep(seconds)
+        finally:
+            # Always stop, so the robot never keeps driving on its own
+            await self.coordinator.async_send(protocol.manual(_MANUAL_STOP))

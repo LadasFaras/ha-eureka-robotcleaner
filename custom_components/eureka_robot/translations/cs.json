@@ -1,0 +1,280 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Přihlášení k Eureka Robot",
+        "description": "Použijte stejný e-mail a heslo jako v aplikaci Eureka Robot.",
+        "data": {
+          "email": "E-mail",
+          "password": "Heslo"
+        }
+      },
+      "select_device": {
+        "title": "Vyberte robota",
+        "description": "Na tomto účtu bylo nalezeno více robotů. Vyberte, kterého přidat.",
+        "data": {
+          "device_id": "Robot"
+        }
+      },
+      "manual": {
+        "title": "ID robota",
+        "description": "Pro tento účet nebyli vráceni žádní roboti. Zadejte Device ID z aplikace Eureka Robot (Nastavení → Informace o zařízení).",
+        "data": {
+          "device_id": "Device ID"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Znovu přihlásit",
+        "description": "Uložené přihlášení Eureka Robot již nefunguje. Zadejte znovu heslo.",
+        "data": {
+          "email": "E-mail",
+          "password": "Heslo"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Neplatný e-mail nebo heslo.",
+      "cannot_connect": "Nelze se připojit ke cloudu Eureka Robot.",
+      "device_not_found": "Tento robot nebyl na účtu nalezen.",
+      "unknown": "Neočekávaná chyba. Zkontrolujte protokol."
+    },
+    "abort": {
+      "already_configured": "Tento robot je již nastaven.",
+      "reauth_successful": "Opětovné přihlášení proběhlo úspěšně."
+    }
+  },
+  "entity": {
+    "vacuum": {
+      "powerbot": {
+        "state_attributes": {
+          "fan_speed": {
+            "name": "Sací výkon",
+            "state": {
+              "off": "Vypnuto",
+              "quiet": "Tichý",
+              "low": "Nízký",
+              "normal": "Normální",
+              "turbo": "Turbo",
+              "max": "Max"
+            }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "status": {
+        "name": "Stav"
+      },
+      "fan_speed": {
+        "name": "Sací výkon",
+        "state": {
+          "off": "Vypnuto",
+          "quiet": "Tichý",
+          "low": "Nízký",
+          "normal": "Normální",
+          "turbo": "Turbo",
+          "max": "Max"
+        }
+      },
+      "connection": {
+        "name": "Připojení",
+        "state": {
+          "online": "Online",
+          "offline": "Offline"
+        }
+      },
+      "filter_life": {
+        "name": "Filtr"
+      },
+      "side_brush_life": {
+        "name": "Boční kartáč"
+      },
+      "main_brush_life": {
+        "name": "Hlavní kartáč"
+      },
+      "cleaning_mode": {
+        "name": "Režim úklidu",
+        "state": {
+          "random": "Náhodný",
+          "arc": "Oblouk",
+          "edge": "Okraje",
+          "spot": "Bodový",
+          "spiral": "Spirála",
+          "bed": "Postel",
+          "wide_spiral": "Široká spirála",
+          "auto": "Auto",
+          "area": "Plocha",
+          "room": "Místnost",
+          "zone": "Zóna",
+          "path": "Trasa"
+        }
+      },
+      "cleaned_area": {
+        "name": "Uklizená plocha"
+      },
+      "cleaning_time": {
+        "name": "Doba úklidu"
+      },
+      "error_code": {
+        "name": "Kód chyby"
+      },
+      "robot_error": {
+        "name": "Chyba",
+        "state": {
+          "none": "No error",
+          "dustbin_missing": "Dustbin is not properly installed",
+          "wheels_stuck": "Wheels are stuck",
+          "wheels_overload": "Wheels are overloaded",
+          "side_brush_tangled": "Side brush is tangled",
+          "main_brush_tangled": "Main brush is tangled",
+          "vacuum_motor_overload": "Vacuum motor overload",
+          "bumper_failure": "Bumper failure",
+          "lidar_failure": "LiDAR sensor failure",
+          "cliff_sensor_failure": "Cliff sensor failure",
+          "robot_tilted": "Robot is tilted",
+          "lidar_blocked": "LiDAR sensor is blocked",
+          "edge_sensor_failure": "Edge sensor failure",
+          "no_go_zone": "No-go zone or virtual wall in the way",
+          "magnetic_interference": "Strong magnetic interference",
+          "mop_missing": "Mopping pad is not installed properly",
+          "wheels_slipping": "Wheels are slipping",
+          "recharge_failed": "Returning to the dock failed",
+          "mop_module_stuck": "Mopping module may be stuck",
+          "dust_collection_failed": "Dust collection failed",
+          "dust_bag_full": "Dust bag is full",
+          "air_duct_blocked": "Air duct is blocked",
+          "bluetooth_error": "Bluetooth error",
+          "lidar_communication": "LiDAR communication error, restart the robot",
+          "host_communication": "Internal communication error, restart the robot",
+          "internal_error": "Internal error, restart the robot",
+          "relocation_failed": "Could not find its position on the map",
+          "battery_low": "Battery is low",
+          "cliff_sensor_blocked": "Cliff sensors are blocked",
+          "battery_abnormal": "Battery problem",
+          "mop_lift_failure": "Mop lifting failure",
+          "dust_collection_interrupted": "Dust collection interrupted",
+          "canister_lid_open": "Canister lid is open",
+          "dust_bag_missing": "Dust bag is not installed",
+          "child_lock": "Child lock is on",
+          "unknown_error": "Unknown error, restart the robot"
+        }
+      },
+      "total_cleaning_time": {
+        "name": "Celková doba úklidu"
+      },
+      "total_cleaned_area": {
+        "name": "Celková uklizená plocha"
+      },
+      "total_cleanings": {
+        "name": "Počet úklidů"
+      },
+      "last_clean": {
+        "name": "Poslední úklid"
+      },
+      "sensor_cleaning": {
+        "name": "Od čištění senzorů"
+      },
+      "wifi_ssid": {
+        "name": "Síť Wi-Fi"
+      },
+      "ip_address": {
+        "name": "IP adresa"
+      }
+    },
+    "binary_sensor": {
+      "cleaning": {
+        "name": "Úklid"
+      },
+      "docked": {
+        "name": "V základně"
+      },
+      "auto_update": {
+        "name": "Automatické aktualizace firmwaru"
+      }
+    },
+    "select": {
+      "water_level": {
+        "name": "Množství vody",
+        "state": {
+          "off": "Vypnuto",
+          "low": "Nízké",
+          "normal": "Normální",
+          "high": "Vysoké"
+        }
+      },
+      "work_mode": {
+        "name": "Mód úklidu",
+        "state": {
+          "auto": "Auto",
+          "edge": "Okraje",
+          "spot": "Bodově"
+        }
+      },
+      "voice": {
+        "name": "Hlas"
+      },
+      "suction": {
+        "name": "Sací výkon",
+        "state": {
+          "off": "Vypnuto",
+          "quiet": "Tichý",
+          "low": "Nízký",
+          "normal": "Normální",
+          "turbo": "Turbo",
+          "max": "Max"
+        }
+      }
+    },
+    "switch": {
+      "carpet_mode": {
+        "name": "Režim koberce"
+      },
+      "do_not_disturb": {
+        "name": "Nerušit"
+      },
+      "schedule": {
+        "name": "Plán {task}"
+      },
+      "child_lock": {
+        "name": "Dětský zámek"
+      }
+    },
+    "number": {
+      "volume": {
+        "name": "Hlasitost"
+      }
+    },
+    "time": {
+      "dnd_start": {
+        "name": "Začátek Nerušit"
+      },
+      "dnd_end": {
+        "name": "Konec Nerušit"
+      }
+    },
+    "image": {
+      "map": {
+        "name": "Mapa"
+      }
+    },
+    "text": {
+      "room_name": {
+        "name": "Název místnosti {room}"
+      }
+    },
+    "update": {
+      "firmware": {
+        "name": "Firmware"
+      },
+      "wifi_module_firmware": {
+        "name": "Firmware modulu Wi-Fi"
+      }
+    }
+  },
+  "issues": {
+    "unsupported_model": {
+      "title": "{name} je jen pro čtení",
+      "description": "{name} je {model} (kód modelu {sn8}, plugin aplikace {plugin}). Tato integrace zatím umí ovládat jen model codes listed in const.py, proto Home Assistant zobrazuje stav tohoto robota, ale nemůže mu posílat příkazy. Založte prosím issue na GitHubu s údaji o modelu výše, aby mohla být podpora doplněna."
+    }
+  }
+}

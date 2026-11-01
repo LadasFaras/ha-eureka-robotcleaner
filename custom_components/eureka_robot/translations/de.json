@@ -1,0 +1,272 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Bei Eureka Robot anmelden",
+        "description": "Verwende dieselbe E-Mail und dasselbe Passwort wie in der Eureka Robot-App.",
+        "data": {
+          "email": "E-Mail",
+          "password": "Passwort"
+        }
+      },
+      "select_device": {
+        "title": "Roboter auswählen",
+        "description": "In diesem Konto wurden mehrere Roboter gefunden. Wähle den hinzuzufügenden aus.",
+        "data": {
+          "device_id": "Roboter"
+        }
+      },
+      "manual": {
+        "title": "Roboter-ID",
+        "description": "Für dieses Konto wurden keine Roboter gemeldet. Gib die Device ID aus der Eureka Robot-App ein (Einstellungen → Geräteinfo).",
+        "data": {
+          "device_id": "Device ID"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Erneut anmelden",
+        "description": "Die gespeicherte Eureka Robot-Anmeldung funktioniert nicht mehr. Gib dein Passwort erneut ein.",
+        "data": {
+          "email": "E-Mail",
+          "password": "Passwort"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Ungültige E-Mail oder ungültiges Passwort.",
+      "cannot_connect": "Verbindung zur Eureka Robot-Cloud fehlgeschlagen.",
+      "device_not_found": "Dieser Roboter wurde im Konto nicht gefunden.",
+      "unknown": "Unerwarteter Fehler. Details im Protokoll."
+    },
+    "abort": {
+      "already_configured": "Dieser Roboter ist bereits eingerichtet.",
+      "reauth_successful": "Erneute Anmeldung erfolgreich."
+    }
+  },
+  "entity": {
+    "vacuum": {
+      "powerbot": {
+        "state_attributes": {
+          "fan_speed": {
+            "name": "Saugleistung",
+            "state": {
+              "off": "Aus",
+              "quiet": "Leise",
+              "low": "Niedrig",
+              "normal": "Normal",
+              "turbo": "Turbo",
+              "max": "Max"
+            }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "status": {
+        "name": "Status"
+      },
+      "fan_speed": {
+        "name": "Saugstufe",
+        "state": {
+          "off": "Aus",
+          "quiet": "Leise",
+          "low": "Niedrig",
+          "normal": "Normal",
+          "turbo": "Turbo",
+          "max": "Max"
+        }
+      },
+      "connection": {
+        "name": "Verbindung",
+        "state": {
+          "online": "Online",
+          "offline": "Offline"
+        }
+      },
+      "filter_life": {
+        "name": "Filter"
+      },
+      "side_brush_life": {
+        "name": "Seitenbürste"
+      },
+      "main_brush_life": {
+        "name": "Hauptbürste"
+      },
+      "cleaning_mode": {
+        "name": "Reinigungsmodus",
+        "state": {
+          "random": "Zufall",
+          "arc": "Bogen",
+          "edge": "Kanten",
+          "spot": "Spot",
+          "spiral": "Spirale",
+          "bed": "Bett",
+          "wide_spiral": "Breite Spirale",
+          "auto": "Auto",
+          "area": "Bereich",
+          "room": "Raum",
+          "zone": "Zone",
+          "path": "Pfad"
+        }
+      },
+      "cleaned_area": {
+        "name": "Gereinigte Fläche"
+      },
+      "cleaning_time": {
+        "name": "Reinigungszeit"
+      },
+      "error_code": {
+        "name": "Fehlercode"
+      },
+      "robot_error": {
+        "name": "Fehler",
+        "state": {
+          "none": "No error",
+          "dustbin_missing": "Dustbin is not properly installed",
+          "wheels_stuck": "Wheels are stuck",
+          "wheels_overload": "Wheels are overloaded",
+          "side_brush_tangled": "Side brush is tangled",
+          "main_brush_tangled": "Main brush is tangled",
+          "vacuum_motor_overload": "Vacuum motor overload",
+          "bumper_failure": "Bumper failure",
+          "lidar_failure": "LiDAR sensor failure",
+          "cliff_sensor_failure": "Cliff sensor failure",
+          "robot_tilted": "Robot is tilted",
+          "lidar_blocked": "LiDAR sensor is blocked",
+          "edge_sensor_failure": "Edge sensor failure",
+          "no_go_zone": "No-go zone or virtual wall in the way",
+          "magnetic_interference": "Strong magnetic interference",
+          "mop_missing": "Mopping pad is not installed properly",
+          "wheels_slipping": "Wheels are slipping",
+          "recharge_failed": "Returning to the dock failed",
+          "mop_module_stuck": "Mopping module may be stuck",
+          "dust_collection_failed": "Dust collection failed",
+          "dust_bag_full": "Dust bag is full",
+          "air_duct_blocked": "Air duct is blocked",
+          "bluetooth_error": "Bluetooth error",
+          "lidar_communication": "LiDAR communication error, restart the robot",
+          "host_communication": "Internal communication error, restart the robot",
+          "internal_error": "Internal error, restart the robot",
+          "relocation_failed": "Could not find its position on the map",
+          "battery_low": "Battery is low",
+          "cliff_sensor_blocked": "Cliff sensors are blocked",
+          "battery_abnormal": "Battery problem",
+          "mop_lift_failure": "Mop lifting failure",
+          "dust_collection_interrupted": "Dust collection interrupted",
+          "canister_lid_open": "Canister lid is open",
+          "dust_bag_missing": "Dust bag is not installed",
+          "child_lock": "Child lock is on",
+          "unknown_error": "Unknown error, restart the robot"
+        }
+      },
+      "total_cleaning_time": {
+        "name": "Gesamte Reinigungszeit"
+      },
+      "total_cleaned_area": {
+        "name": "Gesamte gereinigte Fläche"
+      },
+      "total_cleanings": {
+        "name": "Reinigungen gesamt"
+      },
+      "last_clean": {
+        "name": "Letzte Reinigung"
+      },
+      "sensor_cleaning": {
+        "name": "Seit Sensorreinigung"
+      },
+      "wifi_ssid": {
+        "name": "WLAN-Netzwerk"
+      },
+      "ip_address": {
+        "name": "IP-Adresse"
+      }
+    },
+    "binary_sensor": {
+      "cleaning": {
+        "name": "Reinigt"
+      },
+      "docked": {
+        "name": "Angedockt"
+      },
+      "auto_update": {
+        "name": "Automatische Firmware-Updates"
+      }
+    },
+    "select": {
+      "water_level": {
+        "name": "Wassermenge",
+        "state": {
+          "off": "Aus",
+          "low": "Niedrig",
+          "normal": "Normal",
+          "high": "Hoch"
+        }
+      },
+      "voice": {
+        "name": "Sprache"
+      },
+      "suction": {
+        "name": "Saugleistung",
+        "state": {
+          "off": "Aus",
+          "quiet": "Leise",
+          "low": "Niedrig",
+          "normal": "Normal",
+          "turbo": "Turbo",
+          "max": "Max"
+        }
+      }
+    },
+    "switch": {
+      "carpet_mode": {
+        "name": "Teppichmodus"
+      },
+      "do_not_disturb": {
+        "name": "Nicht stören"
+      },
+      "schedule": {
+        "name": "Zeitplan {task}"
+      },
+      "child_lock": {
+        "name": "Kindersicherung"
+      }
+    },
+    "number": {
+      "volume": {
+        "name": "Lautstärke"
+      }
+    },
+    "time": {
+      "dnd_start": {
+        "name": "Beginn Nicht stören"
+      },
+      "dnd_end": {
+        "name": "Ende Nicht stören"
+      }
+    },
+    "image": {
+      "map": {
+        "name": "Karte"
+      }
+    },
+    "text": {
+      "room_name": {
+        "name": "Name von Raum {room}"
+      }
+    },
+    "update": {
+      "firmware": {
+        "name": "Firmware"
+      },
+      "wifi_module_firmware": {
+        "name": "WLAN-Modul-Firmware"
+      }
+    }
+  },
+  "issues": {
+    "unsupported_model": {
+      "title": "{name} wird nur angezeigt",
+      "description": "{name} ist ein {model} (Modellcode {sn8}, App-Plugin {plugin}). Diese Integration kann bisher nur den model codes listed in const.py steuern, daher zeigt Home Assistant den Zustand dieses Roboters an, kann ihm aber keine Befehle senden. Bitte eröffne ein Issue auf GitHub mit den obigen Modelldaten, damit die Unterstützung ergänzt werden kann."
+    }
+  }
+}

@@ -1,0 +1,272 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Вхід у Eureka Robot",
+        "description": "Використайте ті самі email і пароль, що й у мобільному додатку Eureka Robot.",
+        "data": {
+          "email": "Email",
+          "password": "Пароль"
+        }
+      },
+      "select_device": {
+        "title": "Оберіть робота",
+        "description": "На цьому акаунті знайдено кілька роботів. Оберіть, якого додати.",
+        "data": {
+          "device_id": "Робот"
+        }
+      },
+      "manual": {
+        "title": "ID робота",
+        "description": "Сервер не повернув жодного робота для цього акаунта. Введіть Device ID з додатку Eureka Robot (Налаштування → Інформація про пристрій).",
+        "data": {
+          "device_id": "Device ID"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Повторний вхід",
+        "description": "Збережений вхід Eureka Robot більше не дійсний. Введіть пароль від акаунта ще раз.",
+        "data": {
+          "email": "Email",
+          "password": "Пароль"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Невірний email або пароль.",
+      "cannot_connect": "Не вдалося підключитися до хмари Eureka Robot.",
+      "device_not_found": "Цього робота не знайдено на акаунті.",
+      "unknown": "Неочікувана помилка. Перевірте журнал."
+    },
+    "abort": {
+      "already_configured": "Цей робот уже налаштований.",
+      "reauth_successful": "Повторний вхід успішний."
+    }
+  },
+  "entity": {
+    "vacuum": {
+      "powerbot": {
+        "state_attributes": {
+          "fan_speed": {
+            "name": "Потужність всмоктування",
+            "state": {
+              "off": "Вимкнено",
+              "quiet": "Тихо",
+              "low": "Низька",
+              "normal": "Нормальна",
+              "turbo": "Турбо",
+              "max": "Максимум"
+            }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "status": {
+        "name": "Стан"
+      },
+      "fan_speed": {
+        "name": "Швидкість вентилятора",
+        "state": {
+          "off": "Вимкнено",
+          "quiet": "Тихо",
+          "low": "Низька",
+          "normal": "Нормальна",
+          "turbo": "Турбо",
+          "max": "Максимум"
+        }
+      },
+      "connection": {
+        "name": "З'єднання",
+        "state": {
+          "online": "Онлайн",
+          "offline": "Офлайн"
+        }
+      },
+      "filter_life": {
+        "name": "Фільтр"
+      },
+      "side_brush_life": {
+        "name": "Бічна щітка"
+      },
+      "main_brush_life": {
+        "name": "Основна щітка"
+      },
+      "cleaning_mode": {
+        "name": "Режим прибирання",
+        "state": {
+          "random": "Довільний",
+          "arc": "Дугою",
+          "edge": "По краях",
+          "spot": "Точкове",
+          "spiral": "Спіраль",
+          "bed": "Ліжко",
+          "wide_spiral": "Широка спіраль",
+          "auto": "Авто",
+          "area": "Ділянка",
+          "room": "Кімната",
+          "zone": "Зона",
+          "path": "Маршрут"
+        }
+      },
+      "cleaned_area": {
+        "name": "Прибрана площа"
+      },
+      "cleaning_time": {
+        "name": "Час прибирання"
+      },
+      "error_code": {
+        "name": "Код помилки"
+      },
+      "robot_error": {
+        "name": "Помилка",
+        "state": {
+          "none": "Немає помилки",
+          "dustbin_missing": "Контейнер для пилу встановлено неправильно",
+          "wheels_stuck": "Колеса застрягли",
+          "wheels_overload": "Колеса перевантажені",
+          "side_brush_tangled": "Бічна щітка заплуталась",
+          "main_brush_tangled": "Основна щітка заплуталась",
+          "vacuum_motor_overload": "Перевантаження двигуна всмоктування",
+          "bumper_failure": "Несправність бампера",
+          "lidar_failure": "Несправність лідара",
+          "cliff_sensor_failure": "Несправність датчика перепаду висоти",
+          "robot_tilted": "Робот нахилений",
+          "lidar_blocked": "Лідар заблоковано",
+          "edge_sensor_failure": "Несправність бічного датчика",
+          "no_go_zone": "На шляху заборонена зона або віртуальна стіна",
+          "magnetic_interference": "Сильні магнітні перешкоди",
+          "mop_missing": "Мопу встановлено неправильно",
+          "wheels_slipping": "Колеса прослизають",
+          "recharge_failed": "Не вдалося повернутися на базу",
+          "mop_module_stuck": "Модуль миття, можливо, застряг",
+          "dust_collection_failed": "Не вдалося зібрати пил",
+          "dust_bag_full": "Мішок для пилу заповнений",
+          "air_duct_blocked": "Повітропровід заблоковано",
+          "bluetooth_error": "Помилка Bluetooth",
+          "lidar_communication": "Помилка зв'язку з лідаром, перезапустіть робота",
+          "host_communication": "Внутрішня помилка зв'язку, перезапустіть робота",
+          "internal_error": "Внутрішня помилка, перезапустіть робота",
+          "relocation_failed": "Не вдалося визначити місце на карті",
+          "battery_low": "Низький заряд батареї",
+          "cliff_sensor_blocked": "Датчики перепаду висоти заблоковано",
+          "battery_abnormal": "Проблема з батареєю",
+          "mop_lift_failure": "Несправність підйому мопи",
+          "dust_collection_interrupted": "Збір пилу перервано",
+          "canister_lid_open": "Кришка контейнера відкрита",
+          "dust_bag_missing": "Мішок для пилу не встановлено",
+          "child_lock": "Увімкнено блокування від дітей",
+          "unknown_error": "Невідома помилка, перезапустіть робота"
+        }
+      },
+      "total_cleaning_time": {
+        "name": "Загальний час прибирання"
+      },
+      "total_cleaned_area": {
+        "name": "Загальна прибрана площа"
+      },
+      "total_cleanings": {
+        "name": "Кількість прибирань"
+      },
+      "last_clean": {
+        "name": "Останнє прибирання"
+      },
+      "sensor_cleaning": {
+        "name": "Після очищення датчиків"
+      },
+      "wifi_ssid": {
+        "name": "Мережа Wi-Fi"
+      },
+      "ip_address": {
+        "name": "IP-адреса"
+      }
+    },
+    "binary_sensor": {
+      "cleaning": {
+        "name": "Прибирання"
+      },
+      "docked": {
+        "name": "На базі"
+      },
+      "auto_update": {
+        "name": "Автооновлення прошивки"
+      }
+    },
+    "select": {
+      "water_level": {
+        "name": "Подача води",
+        "state": {
+          "off": "Вимкнено",
+          "low": "Низький",
+          "normal": "Нормальний",
+          "high": "Високий"
+        }
+      },
+      "voice": {
+        "name": "Голос"
+      },
+      "suction": {
+        "name": "Потужність всмоктування",
+        "state": {
+          "off": "Вимкнено",
+          "quiet": "Тихо",
+          "low": "Низька",
+          "normal": "Нормальна",
+          "turbo": "Турбо",
+          "max": "Максимум"
+        }
+      }
+    },
+    "switch": {
+      "carpet_mode": {
+        "name": "Режим килима"
+      },
+      "do_not_disturb": {
+        "name": "Не турбувати"
+      },
+      "schedule": {
+        "name": "Розклад {task}"
+      },
+      "child_lock": {
+        "name": "Блокування від дітей"
+      }
+    },
+    "number": {
+      "volume": {
+        "name": "Гучність"
+      }
+    },
+    "time": {
+      "dnd_start": {
+        "name": "Початок «Не турбувати»"
+      },
+      "dnd_end": {
+        "name": "Кінець «Не турбувати»"
+      }
+    },
+    "image": {
+      "map": {
+        "name": "Карта"
+      }
+    },
+    "text": {
+      "room_name": {
+        "name": "Назва кімнати {room}"
+      }
+    },
+    "update": {
+      "firmware": {
+        "name": "Прошивка"
+      },
+      "wifi_module_firmware": {
+        "name": "Прошивка Wi-Fi модуля"
+      }
+    }
+  },
+  "issues": {
+    "unsupported_model": {
+      "title": "{name} доступний лише для перегляду",
+      "description": "{name} — це {model} (код моделі {sn8}, плагін застосунку {plugin}). Поки що інтеграція вміє керувати лише model codes listed in const.py, тому Home Assistant показує стан цього робота, але не може надсилати йому команди. Створіть, будь ласка, issue на GitHub з даними моделі вище, щоб додати підтримку."
+    }
+  }
+}

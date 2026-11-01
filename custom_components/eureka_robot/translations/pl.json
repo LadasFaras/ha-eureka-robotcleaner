@@ -1,0 +1,272 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Logowanie do Eureka Robot",
+        "description": "Użyj tego samego e-maila i hasła co w aplikacji Eureka Robot.",
+        "data": {
+          "email": "E-mail",
+          "password": "Hasło"
+        }
+      },
+      "select_device": {
+        "title": "Wybierz robota",
+        "description": "Na tym koncie znaleziono kilka robotów. Wybierz, którego dodać.",
+        "data": {
+          "device_id": "Robot"
+        }
+      },
+      "manual": {
+        "title": "ID robota",
+        "description": "Dla tego konta nie zwrócono żadnych robotów. Wpisz Device ID z aplikacji Eureka Robot (Ustawienia → Informacje o urządzeniu).",
+        "data": {
+          "device_id": "Device ID"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Zaloguj ponownie",
+        "description": "Zapisane logowanie Eureka Robot przestało działać. Wpisz ponownie hasło.",
+        "data": {
+          "email": "E-mail",
+          "password": "Hasło"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Nieprawidłowy e-mail lub hasło.",
+      "cannot_connect": "Nie można połączyć się z chmurą Eureka Robot.",
+      "device_not_found": "Nie znaleziono tego robota na koncie.",
+      "unknown": "Nieoczekiwany błąd. Sprawdź logi."
+    },
+    "abort": {
+      "already_configured": "Ten robot jest już skonfigurowany.",
+      "reauth_successful": "Ponowne logowanie powiodło się."
+    }
+  },
+  "entity": {
+    "vacuum": {
+      "powerbot": {
+        "state_attributes": {
+          "fan_speed": {
+            "name": "Moc ssania",
+            "state": {
+              "off": "Wyłączone",
+              "quiet": "Cicho",
+              "low": "Niska",
+              "normal": "Normalna",
+              "turbo": "Turbo",
+              "max": "Maks"
+            }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "status": {
+        "name": "Stan"
+      },
+      "fan_speed": {
+        "name": "Moc ssania",
+        "state": {
+          "off": "Wyłączone",
+          "quiet": "Cicho",
+          "low": "Niska",
+          "normal": "Normalna",
+          "turbo": "Turbo",
+          "max": "Maks"
+        }
+      },
+      "connection": {
+        "name": "Połączenie",
+        "state": {
+          "online": "Online",
+          "offline": "Offline"
+        }
+      },
+      "filter_life": {
+        "name": "Filtr"
+      },
+      "side_brush_life": {
+        "name": "Szczotka boczna"
+      },
+      "main_brush_life": {
+        "name": "Szczotka główna"
+      },
+      "cleaning_mode": {
+        "name": "Tryb sprzątania",
+        "state": {
+          "random": "Losowy",
+          "arc": "Łuk",
+          "edge": "Krawędzie",
+          "spot": "Punktowy",
+          "spiral": "Spirala",
+          "bed": "Łóżko",
+          "wide_spiral": "Szeroka spirala",
+          "auto": "Auto",
+          "area": "Obszar",
+          "room": "Pokój",
+          "zone": "Strefa",
+          "path": "Trasa"
+        }
+      },
+      "cleaned_area": {
+        "name": "Posprzątana powierzchnia"
+      },
+      "cleaning_time": {
+        "name": "Czas sprzątania"
+      },
+      "error_code": {
+        "name": "Kod błędu"
+      },
+      "robot_error": {
+        "name": "Błąd",
+        "state": {
+          "none": "No error",
+          "dustbin_missing": "Dustbin is not properly installed",
+          "wheels_stuck": "Wheels are stuck",
+          "wheels_overload": "Wheels are overloaded",
+          "side_brush_tangled": "Side brush is tangled",
+          "main_brush_tangled": "Main brush is tangled",
+          "vacuum_motor_overload": "Vacuum motor overload",
+          "bumper_failure": "Bumper failure",
+          "lidar_failure": "LiDAR sensor failure",
+          "cliff_sensor_failure": "Cliff sensor failure",
+          "robot_tilted": "Robot is tilted",
+          "lidar_blocked": "LiDAR sensor is blocked",
+          "edge_sensor_failure": "Edge sensor failure",
+          "no_go_zone": "No-go zone or virtual wall in the way",
+          "magnetic_interference": "Strong magnetic interference",
+          "mop_missing": "Mopping pad is not installed properly",
+          "wheels_slipping": "Wheels are slipping",
+          "recharge_failed": "Returning to the dock failed",
+          "mop_module_stuck": "Mopping module may be stuck",
+          "dust_collection_failed": "Dust collection failed",
+          "dust_bag_full": "Dust bag is full",
+          "air_duct_blocked": "Air duct is blocked",
+          "bluetooth_error": "Bluetooth error",
+          "lidar_communication": "LiDAR communication error, restart the robot",
+          "host_communication": "Internal communication error, restart the robot",
+          "internal_error": "Internal error, restart the robot",
+          "relocation_failed": "Could not find its position on the map",
+          "battery_low": "Battery is low",
+          "cliff_sensor_blocked": "Cliff sensors are blocked",
+          "battery_abnormal": "Battery problem",
+          "mop_lift_failure": "Mop lifting failure",
+          "dust_collection_interrupted": "Dust collection interrupted",
+          "canister_lid_open": "Canister lid is open",
+          "dust_bag_missing": "Dust bag is not installed",
+          "child_lock": "Child lock is on",
+          "unknown_error": "Unknown error, restart the robot"
+        }
+      },
+      "total_cleaning_time": {
+        "name": "Całkowity czas sprzątania"
+      },
+      "total_cleaned_area": {
+        "name": "Całkowita sprzątnięta powierzchnia"
+      },
+      "total_cleanings": {
+        "name": "Liczba sprzątań"
+      },
+      "last_clean": {
+        "name": "Ostatnie sprzątanie"
+      },
+      "sensor_cleaning": {
+        "name": "Od czyszczenia czujników"
+      },
+      "wifi_ssid": {
+        "name": "Sieć Wi-Fi"
+      },
+      "ip_address": {
+        "name": "Adres IP"
+      }
+    },
+    "binary_sensor": {
+      "cleaning": {
+        "name": "Sprzątanie"
+      },
+      "docked": {
+        "name": "W stacji"
+      },
+      "auto_update": {
+        "name": "Automatyczne aktualizacje oprogramowania"
+      }
+    },
+    "select": {
+      "water_level": {
+        "name": "Poziom wody",
+        "state": {
+          "off": "Wyłączony",
+          "low": "Niski",
+          "normal": "Normalny",
+          "high": "Wysoki"
+        }
+      },
+      "voice": {
+        "name": "Głos"
+      },
+      "suction": {
+        "name": "Moc ssania",
+        "state": {
+          "off": "Wyłączone",
+          "quiet": "Cicho",
+          "low": "Niska",
+          "normal": "Normalna",
+          "turbo": "Turbo",
+          "max": "Maks"
+        }
+      }
+    },
+    "switch": {
+      "carpet_mode": {
+        "name": "Tryb dywanu"
+      },
+      "do_not_disturb": {
+        "name": "Nie przeszkadzać"
+      },
+      "schedule": {
+        "name": "Harmonogram {task}"
+      },
+      "child_lock": {
+        "name": "Blokada rodzicielska"
+      }
+    },
+    "number": {
+      "volume": {
+        "name": "Głośność"
+      }
+    },
+    "time": {
+      "dnd_start": {
+        "name": "Początek Nie przeszkadzać"
+      },
+      "dnd_end": {
+        "name": "Koniec Nie przeszkadzać"
+      }
+    },
+    "image": {
+      "map": {
+        "name": "Mapa"
+      }
+    },
+    "text": {
+      "room_name": {
+        "name": "Nazwa pokoju {room}"
+      }
+    },
+    "update": {
+      "firmware": {
+        "name": "Oprogramowanie"
+      },
+      "wifi_module_firmware": {
+        "name": "Oprogramowanie modułu Wi-Fi"
+      }
+    }
+  },
+  "issues": {
+    "unsupported_model": {
+      "title": "{name} jest tylko do odczytu",
+      "description": "{name} to {model} (kod modelu {sn8}, wtyczka aplikacji {plugin}). Ta integracja potrafi na razie sterować tylko model codes listed in const.py, więc Home Assistant pokazuje stan tego robota, ale nie może wysyłać mu poleceń. Zgłoś issue na GitHubie z powyższymi danymi modelu, aby dodać jego obsługę."
+    }
+  }
+}

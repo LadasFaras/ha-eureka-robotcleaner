@@ -1,0 +1,280 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Sign in to Eureka Robot",
+        "description": "Use the same email and password as in the Eureka Robot mobile app.",
+        "data": {
+          "email": "Email",
+          "password": "Password"
+        }
+      },
+      "select_device": {
+        "title": "Choose a robot",
+        "description": "Several robots were found on this account. Choose the one to add.",
+        "data": {
+          "device_id": "Robot"
+        }
+      },
+      "manual": {
+        "title": "Robot ID",
+        "description": "No robots were returned for this account. Enter the Device ID shown in the Eureka Robot app (Settings → Device info).",
+        "data": {
+          "device_id": "Device ID"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Sign in again",
+        "description": "The saved Eureka Robot login no longer works. Enter your account password again.",
+        "data": {
+          "email": "Email",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid email or password.",
+      "cannot_connect": "Could not connect to the Eureka Robot cloud.",
+      "device_not_found": "This robot was not found on the account.",
+      "unknown": "Unexpected error. Check the logs for details."
+    },
+    "abort": {
+      "already_configured": "This robot is already configured.",
+      "reauth_successful": "Re-authentication was successful."
+    }
+  },
+  "entity": {
+    "vacuum": {
+      "powerbot": {
+        "state_attributes": {
+          "fan_speed": {
+            "name": "Fan speed",
+            "state": {
+              "off": "Off",
+              "quiet": "Quiet",
+              "low": "Low",
+              "normal": "Normal",
+              "turbo": "Turbo",
+              "max": "Max"
+            }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "status": {
+        "name": "Status"
+      },
+      "fan_speed": {
+        "name": "Fan speed",
+        "state": {
+          "off": "Off",
+          "quiet": "Quiet",
+          "low": "Low",
+          "normal": "Normal",
+          "turbo": "Turbo",
+          "max": "Max"
+        }
+      },
+      "connection": {
+        "name": "Connection",
+        "state": {
+          "online": "Online",
+          "offline": "Offline"
+        }
+      },
+      "filter_life": {
+        "name": "Filter"
+      },
+      "side_brush_life": {
+        "name": "Side brush"
+      },
+      "main_brush_life": {
+        "name": "Main brush"
+      },
+      "cleaning_mode": {
+        "name": "Cleaning mode",
+        "state": {
+          "random": "Random",
+          "arc": "Arc",
+          "edge": "Edge",
+          "spot": "Spot",
+          "spiral": "Spiral",
+          "bed": "Bed",
+          "wide_spiral": "Wide spiral",
+          "auto": "Auto",
+          "area": "Area",
+          "room": "Room",
+          "zone": "Zone",
+          "path": "Path"
+        }
+      },
+      "cleaned_area": {
+        "name": "Cleaned area"
+      },
+      "cleaning_time": {
+        "name": "Cleaning time"
+      },
+      "error_code": {
+        "name": "Error code"
+      },
+      "robot_error": {
+        "name": "Error",
+        "state": {
+          "none": "No error",
+          "dustbin_missing": "Dustbin is not properly installed",
+          "wheels_stuck": "Wheels are stuck",
+          "wheels_overload": "Wheels are overloaded",
+          "side_brush_tangled": "Side brush is tangled",
+          "main_brush_tangled": "Main brush is tangled",
+          "vacuum_motor_overload": "Vacuum motor overload",
+          "bumper_failure": "Bumper failure",
+          "lidar_failure": "LiDAR sensor failure",
+          "cliff_sensor_failure": "Cliff sensor failure",
+          "robot_tilted": "Robot is tilted",
+          "lidar_blocked": "LiDAR sensor is blocked",
+          "edge_sensor_failure": "Edge sensor failure",
+          "no_go_zone": "No-go zone or virtual wall in the way",
+          "magnetic_interference": "Strong magnetic interference",
+          "mop_missing": "Mopping pad is not installed properly",
+          "wheels_slipping": "Wheels are slipping",
+          "recharge_failed": "Returning to the dock failed",
+          "mop_module_stuck": "Mopping module may be stuck",
+          "dust_collection_failed": "Dust collection failed",
+          "dust_bag_full": "Dust bag is full",
+          "air_duct_blocked": "Air duct is blocked",
+          "bluetooth_error": "Bluetooth error",
+          "lidar_communication": "LiDAR communication error, restart the robot",
+          "host_communication": "Internal communication error, restart the robot",
+          "internal_error": "Internal error, restart the robot",
+          "relocation_failed": "Could not find its position on the map",
+          "battery_low": "Battery is low",
+          "cliff_sensor_blocked": "Cliff sensors are blocked",
+          "battery_abnormal": "Battery problem",
+          "mop_lift_failure": "Mop lifting failure",
+          "dust_collection_interrupted": "Dust collection interrupted",
+          "canister_lid_open": "Canister lid is open",
+          "dust_bag_missing": "Dust bag is not installed",
+          "child_lock": "Child lock is on",
+          "unknown_error": "Unknown error, restart the robot"
+        }
+      },
+      "total_cleaning_time": {
+        "name": "Total cleaning time"
+      },
+      "total_cleaned_area": {
+        "name": "Total cleaned area"
+      },
+      "total_cleanings": {
+        "name": "Total cleanings"
+      },
+      "last_clean": {
+        "name": "Last clean"
+      },
+      "sensor_cleaning": {
+        "name": "Since sensor cleaning"
+      },
+      "wifi_ssid": {
+        "name": "Wi-Fi network"
+      },
+      "ip_address": {
+        "name": "IP address"
+      }
+    },
+    "binary_sensor": {
+      "cleaning": {
+        "name": "Cleaning"
+      },
+      "docked": {
+        "name": "Docked"
+      },
+      "auto_update": {
+        "name": "Automatic firmware updates"
+      }
+    },
+    "select": {
+      "water_level": {
+        "name": "Water level",
+        "state": {
+          "off": "Off",
+          "low": "Low",
+          "normal": "Normal",
+          "high": "High"
+        }
+      },
+      "work_mode": {
+        "name": "Clean mode",
+        "state": {
+          "auto": "Auto",
+          "edge": "Edge",
+          "spot": "Spot"
+        }
+      },
+      "voice": {
+        "name": "Voice"
+      },
+      "suction": {
+        "name": "Suction power",
+        "state": {
+          "off": "Off",
+          "quiet": "Quiet",
+          "low": "Low",
+          "normal": "Normal",
+          "turbo": "Turbo",
+          "max": "Max"
+        }
+      }
+    },
+    "switch": {
+      "carpet_mode": {
+        "name": "Carpet mode"
+      },
+      "do_not_disturb": {
+        "name": "Do not disturb"
+      },
+      "schedule": {
+        "name": "Schedule {task}"
+      },
+      "child_lock": {
+        "name": "Child lock"
+      }
+    },
+    "number": {
+      "volume": {
+        "name": "Volume"
+      }
+    },
+    "time": {
+      "dnd_start": {
+        "name": "Do not disturb start"
+      },
+      "dnd_end": {
+        "name": "Do not disturb end"
+      }
+    },
+    "image": {
+      "map": {
+        "name": "Map"
+      }
+    },
+    "text": {
+      "room_name": {
+        "name": "Room {room} name"
+      }
+    },
+    "update": {
+      "firmware": {
+        "name": "Firmware"
+      },
+      "wifi_module_firmware": {
+        "name": "Wi-Fi module firmware"
+      }
+    }
+  },
+  "issues": {
+    "unsupported_model": {
+      "title": "{name} is shown read-only",
+      "description": "{name} is a {model} (model code {sn8}, app plugin {plugin}). This integration can control only the model codes listed in const.py so far, so Home Assistant shows this robot's state but cannot send it commands. Please open an issue on GitHub with the model details above so support can be added."
+    }
+  }
+}
