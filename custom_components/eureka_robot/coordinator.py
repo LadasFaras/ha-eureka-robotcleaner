@@ -341,13 +341,19 @@ class PowerBotDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         self.rooms[room_id] = name
         self.async_update_listeners()
 
-    async def async_send(self, frame: str) -> None:
-        """Send a command frame and refresh the state."""
+    async def async_send(self, frame: str, *, expect_reply: bool = True) -> None:
+        """Send a command frame and refresh the state.
+
+        Some commands (locate) are carried out without the robot answering, so
+        with expect_reply=False a missing reply is not an error.
+        """
         try:
             await self.client.async_send_command(
                 self.device_id, frame, wait_timeout=COMMAND_WAIT_SECONDS
             )
         except PowerBotDeviceTimeoutError as err:
+            if not expect_reply:
+                return
             raise HomeAssistantError(
                 "The robot did not respond. Check that it is online in the Eureka Robot app."
             ) from err

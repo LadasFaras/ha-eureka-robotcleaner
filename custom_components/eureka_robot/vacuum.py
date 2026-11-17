@@ -69,6 +69,7 @@ class PowerBotVacuum(PowerBotEntity, StateVacuumEntity):
         | VacuumEntityFeature.RETURN_HOME
         | VacuumEntityFeature.STATE
         | VacuumEntityFeature.FAN_SPEED
+        | VacuumEntityFeature.LOCATE
         | VacuumEntityFeature.SEND_COMMAND
     )
 
@@ -103,6 +104,9 @@ class PowerBotVacuum(PowerBotEntity, StateVacuumEntity):
 
     async def async_return_to_base(self, **kwargs: Any) -> None:
         await self.coordinator.async_send(protocol.dock())
+
+    async def async_locate(self, **kwargs: Any) -> None:
+        await self.coordinator.async_send(protocol.locate(), expect_reply=False)
 
     async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None:
         if fan_speed not in FAN_SPEEDS:

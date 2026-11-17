@@ -28,6 +28,7 @@ _VOLUME = 0x0A
 _VOICE = 0x0B
 _CHILD_LOCK = 0x32
 
+_LOCATE = bytes([0x35, 0x07, 0, 0, 0, 0, 0])
 _QUERY_WORK_STATE = bytes([0x32, 0x01])
 _QUERY_DND = bytes([0x32, 0x05])
 _QUERY_VOICE = bytes([0x36])
@@ -103,6 +104,10 @@ def set_suction(fan: int, water: int) -> str:
 def carpet_mode(enabled: bool) -> str:
     return build_frame(bytes([_CONTROL, _CARPET, int(enabled)]))
 
+
+def locate() -> str:
+    """Make the robot play a sound so it can be found."""
+    return build_frame(_LOCATE, msg_type=_MSG_QUERY)
 
 
 def volume(level: int) -> str:

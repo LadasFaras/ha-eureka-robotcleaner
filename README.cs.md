@@ -32,9 +32,8 @@ přihlaste se e-mailem a heslem z aplikace Eureka.
 
 ## Známá omezení
 
-- Příkaz „najít robota“ (pípnutí) není nabízen: bajty příkazu ze Samsungu na
-  E10s nefungují a přidá se, až bude zachycen a ověřen skutečný požadavek
-  aplikace.
+- Robot na příkaz „najít robota“ (pípnutí) neodpovídá, takže Home Assistant ho
+  nemůže potvrdit; robot přesto pípne.
 - Ověřen je jen model E10s. Jiné modely mohou fungovat, pokud sdílí protokol,
   ale jejich kód modelu je nutné přidat do `SUPPORTED_SN8`.
 - Funguje jen přes cloud: potřebuje internet a účet Eureka.

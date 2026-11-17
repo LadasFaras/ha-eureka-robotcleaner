@@ -33,9 +33,8 @@ and sign in with your Eureka app e-mail and password.
 
 ## Known limitations
 
-- The "locate robot" (beep) command is not offered: the Samsung command bytes
-  do not work on the E10s. It will be added once the real app request is
-  captured and verified.
+- The robot does not answer the "locate" (beep) command, so Home Assistant
+  cannot confirm it; the robot still beeps.
 - Only the E10s is verified. Other Eureka models may work if they share the
   protocol, but their model code must be added to `SUPPORTED_SN8`.
 - Cloud-only: needs internet and your Eureka account.
