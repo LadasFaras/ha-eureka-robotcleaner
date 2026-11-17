@@ -22,8 +22,9 @@ talks to the vendor cloud directly.
 
 ## Install
 
-**HACS:** add this repo as a custom repository (category *Integration*),
-install, restart Home Assistant.
+**HACS:** open HACS, search for **Eureka Robot Cleaner**, download it and restart
+Home Assistant. (Until it shows up in the default catalog, add this repo as a
+custom repository with category *Integration*.)
 
 **Manual:** copy `custom_components/eureka_robot/` into your HA `config/custom_components/`.
 
@@ -32,8 +33,9 @@ and sign in with your Eureka app e-mail and password.
 
 ## Known limitations
 
-- `vacuum.locate` does not work on the E10s (the command bytes come from the
-  Samsung and are wrong here; a capture of the real app request is needed).
+- The "locate robot" (beep) command is not offered: the Samsung command bytes
+  do not work on the E10s. It will be added once the real app request is
+  captured and verified.
 - Only the E10s is verified. Other Eureka models may work if they share the
   protocol, but their model code must be added to `SUPPORTED_SN8`.
 - Cloud-only: needs internet and your Eureka account.

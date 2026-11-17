@@ -21,8 +21,9 @@ komunikuje přímo s cloudem výrobce.
 
 ## Instalace
 
-**HACS:** přidejte tento repozitář jako vlastní repozitář (kategorie
-*Integration*), nainstalujte a restartujte Home Assistant.
+**HACS:** otevřete HACS, vyhledejte **Eureka Robot Cleaner**, stáhněte a
+restartujte Home Assistant. (Dokud se nezobrazí ve výchozím katalogu, přidejte
+tento repozitář jako vlastní repozitář s kategorií *Integration*.)
 
 **Ručně:** zkopírujte `custom_components/eureka_robot/` do `config/custom_components/`.
 
@@ -31,8 +32,9 @@ přihlaste se e-mailem a heslem z aplikace Eureka.
 
 ## Známá omezení
 
-- `vacuum.locate` na E10s nefunguje (bajty příkazu jsou ze Samsungu; je nutný
-  záchyt skutečného požadavku aplikace).
+- Příkaz „najít robota“ (pípnutí) není nabízen: bajty příkazu ze Samsungu na
+  E10s nefungují a přidá se, až bude zachycen a ověřen skutečný požadavek
+  aplikace.
 - Ověřen je jen model E10s. Jiné modely mohou fungovat, pokud sdílí protokol,
   ale jejich kód modelu je nutné přidat do `SUPPORTED_SN8`.
 - Funguje jen přes cloud: potřebuje internet a účet Eureka.
