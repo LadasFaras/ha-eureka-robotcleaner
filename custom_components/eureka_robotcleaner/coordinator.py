@@ -184,17 +184,22 @@ class PowerBotDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         return state
 
     async def _async_probe(self) -> None:
-        """Read-only diagnostic for an unsupported model: log one raw reply.
+        """Read-only diagnostic for an unsupported model: log raw replies.
 
-        Sends only the work-state query (no command) and logs the answer as
-        hex so the frame layout of this model can be compared with the E10s.
+        Sends status queries only (no commands) and logs each answer as hex so
+        the frame layout of this model can be compared with the E10s. The
+        second query has the body layout seen on newer (protocol 1) robots.
         """
-        frame = protocol.query_work_state()
-        reply = await self._async_query(frame)
-        _LOGGER.warning(
-            "PROBE %s (sn8 %s, protocol %s): sent %s, reply %s",
-            self.model, self.sn8, self.proto_version, frame, reply,
-        )
+        queries = {
+            "e10s-style": protocol.query_work_state(),
+            "j-style": protocol.build_frame(bytes.fromhex("AA0101"), msg_type=protocol._MSG_QUERY),
+        }
+        for name, frame in queries.items():
+            reply = await self._async_query(frame)
+            _LOGGER.warning(
+                "PROBE %s (sn8 %s, protocol %s) %s: sent %s, reply %s",
+                self.model, self.sn8, self.proto_version, name, frame, reply,
+            )
 
     async def _async_query(self, frame: str) -> str | None:
         """Ask the robot something; None if it does not answer."""
