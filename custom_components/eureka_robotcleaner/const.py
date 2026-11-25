@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from datetime import timedelta
 
-DOMAIN = "eureka_robot"
+DOMAIN = "eureka_robotcleaner"
 
 MANUFACTURER = "Eureka"
 MODEL = "Eureka Robot Vacuum"

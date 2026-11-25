@@ -1,5 +1,5 @@
 {
-  "domain": "eureka_robot",
+  "domain": "eureka_robotcleaner",
   "name": "Eureka Robot Cleaner",
   "codeowners": ["@LadasFaras"],
   "config_flow": true,
@@ -8,5 +8,5 @@
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/LadasFaras/ha-eureka-robotcleaner/issues",
   "requirements": [],
-  "version": "2.0.3"
+  "version": "3.0.0"
 }

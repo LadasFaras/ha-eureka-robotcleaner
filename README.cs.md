@@ -25,7 +25,7 @@ komunikuje přímo s cloudem výrobce.
 restartujte Home Assistant. (Dokud se nezobrazí ve výchozím katalogu, přidejte
 tento repozitář jako vlastní repozitář s kategorií *Integration*.)
 
-**Ručně:** zkopírujte `custom_components/eureka_robot/` do `config/custom_components/`.
+**Ručně:** zkopírujte `custom_components/eureka_robotcleaner/` do `config/custom_components/`.
 
 Potom *Nastavení → Zařízení a služby → Přidat integraci → Eureka Robot Cleaner* a
 přihlaste se e-mailem a heslem z aplikace Eureka.

@@ -26,7 +26,7 @@ talks to the vendor cloud directly.
 Home Assistant. (Until it shows up in the default catalog, add this repo as a
 custom repository with category *Integration*.)
 
-**Manual:** copy `custom_components/eureka_robot/` into your HA `config/custom_components/`.
+**Manual:** copy `custom_components/eureka_robotcleaner/` into your HA `config/custom_components/`.
 
 Then go to *Settings → Devices & services → Add integration → Eureka Robot*
 and sign in with your Eureka app e-mail and password.
