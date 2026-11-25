@@ -88,6 +88,7 @@ class PowerBotDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         self.sn8: str | None = None
         self.model: str | None = None
         self.proto_version: int | None = None
+        self._probed = False
         self.plugin: str | None = None
         # Read from the robot: False when it reports no mop attached
         self.has_mop: bool | None = None
@@ -176,8 +177,24 @@ class PowerBotDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             raise UpdateFailed(f"Error communicating with Eureka Robot cloud: {err}") from err
         if state is None:
             raise UpdateFailed(f"No state returned for device {self.device_id}")
+        if not self.supported and not self._probed and state is not None and state.get("connected", True):
+            self._probed = True
+            await self._async_probe()
         self._polls += 1
         return state
+
+    async def _async_probe(self) -> None:
+        """Read-only diagnostic for an unsupported model: log one raw reply.
+
+        Sends only the work-state query (no command) and logs the answer as
+        hex so the frame layout of this model can be compared with the E10s.
+        """
+        frame = protocol.query_work_state()
+        reply = await self._async_query(frame)
+        _LOGGER.warning(
+            "PROBE %s (sn8 %s, protocol %s): sent %s, reply %s",
+            self.model, self.sn8, self.proto_version, frame, reply,
+        )
 
     async def _async_query(self, frame: str) -> str | None:
         """Ask the robot something; None if it does not answer."""
