@@ -149,12 +149,10 @@ FAN_LEVELS: dict[str, int] = {
 }
 FAN_SPEEDS = list(FAN_LEVELS)
 FAN_LEVEL_MAP: dict[str, str] = {str(v): k for k, v in FAN_LEVELS.items()}
-DEFAULT_FAN = "turbo"
 
 # Mop water levels (shadow "waterLevel" and command bytes)
 WATER_LEVELS: dict[str, int] = {"off": 0, "low": 1, "normal": 2, "high": 3}
 WATER_LEVEL_MAP: dict[str, str] = {str(v): k for k, v in WATER_LEVELS.items()}
-DEFAULT_WATER = "normal"
 
 # Cloud "state" values (names from the Eureka Robot app), grouped by meaning
 STATE_CLEANING = "cleaning"

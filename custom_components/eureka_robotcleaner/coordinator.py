@@ -26,8 +26,6 @@ from .const import (
     DEFAULT_SN8,
     SUPPORTED_PROTO_VERSIONS,
     SUPPORTED_SN8,
-    DEFAULT_FAN,
-    DEFAULT_WATER,
     DEFAULT_WORK_MODE,
     DOMAIN,
     FAN_LEVEL_MAP,
@@ -69,8 +67,6 @@ class PowerBotDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         )
         self.client = client
         self.device_id: str = entry.data[CONF_DEVICE_ID]
-        # Last water level set from Home Assistant, used when the cloud state lacks it
-        self.last_water: str = DEFAULT_WATER
         # Settings read from the robot itself (None until the first answer)
         self.carpet_mode: bool | None = None
         self.volume: int | None = None
@@ -291,20 +287,32 @@ class PowerBotDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
 
     @property
     def fan_speed(self) -> str | None:
+        """Suction from the cloud state, else from the robot's work-state reply."""
         level = self.data.get("fanLevel")
+        if level is None and self.work is not None:
+            level = self.work.fan
         return FAN_LEVEL_MAP.get(str(level)) if level is not None else None
 
     @property
-    def water_level(self) -> str:
+    def water_level(self) -> str | None:
+        """Mop water from the cloud state, else from the robot's work-state reply."""
         level = self.data.get("waterLevel")
-        if level is not None and str(level) in WATER_LEVEL_MAP:
-            return WATER_LEVEL_MAP[str(level)]
-        return self.last_water
+        if level is None and self.work is not None:
+            level = self.work.water
+        return WATER_LEVEL_MAP.get(str(level)) if level is not None else None
 
     def levels(self, fan: str | None = None, water: str | None = None) -> tuple[int, int]:
-        """Return command bytes for fan and water, filling in current values."""
-        fan = fan or self.fan_speed or DEFAULT_FAN
+        """Return command bytes for fan and water, filling in current values.
+
+        The robot takes both at once, so the one the user did not change must
+        be known; never guess it, or the command would overwrite the robot.
+        """
+        fan = fan or self.fan_speed
         water = water or self.water_level
+        if fan is None or water is None:
+            raise HomeAssistantError(
+                "The current suction or mop water setting is not known yet; try again in a moment."
+            )
         return FAN_LEVELS[fan], WATER_LEVELS[water]
 
     async def async_set_dnd(

@@ -68,8 +68,6 @@ class PowerBotWaterLevel(PowerBotEntity, SelectEntity):
         await self.coordinator.async_send(
             protocol.set_suction(*self.coordinator.levels(water=option))
         )
-        self.coordinator.last_water = option
-        self.async_write_ha_state()
 
 
 class PowerBotWorkMode(PowerBotEntity, SelectEntity):
